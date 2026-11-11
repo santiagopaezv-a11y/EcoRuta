@@ -11,7 +11,7 @@ public class Entrega {
     private List<Lote> listaLotes;
     private static int cantidadEntregas=0;
 
-    public Entrega(String id, Aportante aportante) {
+    public Entrega(Aportante aportante) {
         this.id = ""+(++cantidadEntregas);
         this.aportante = aportante;
         this.listaLotes = new ArrayList<>();
