@@ -29,10 +29,6 @@ public class PapelCarton extends Lote {
 
     @Override
     public String toString() {
-        String mensaje=super.toString();
-        mensaje+="\n PapelCarton{" +
-                "clasificado=" + clasificado +
-                '}';
-        return mensaje;
+        return super.toString() + String.format(" Papel y Carton(Clasificado: %s)", clasificado ? "Sí" : "No");
     }
 }

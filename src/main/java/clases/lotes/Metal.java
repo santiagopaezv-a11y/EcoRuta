@@ -3,6 +3,8 @@ package clases.lotes;
 import enums.Metales;
 import interfaces.IGenerable;
 
+import javax.swing.*;
+
 import static enums.Metales.*;
 
 public class Metal extends Lote implements IGenerable {
@@ -33,16 +35,20 @@ public class Metal extends Lote implements IGenerable {
     }
     @Override
     public String generarEtiqueta() {
-        String mensaje= getId()+" "+getTipoMetal();
-        return mensaje;
+        return String.format("[ETIQUETA METAL] Código: %s | Metal: %s", getId(), getTipoMetal());
     }
-
+    public static Metales escogerTipoMetal(){
+        String tipo= JOptionPane.showInputDialog("Ingrese el tipo de metal (Aluminio/Acero)");
+        Metales tipoMetal=null;
+        if (tipo.toLowerCase().equals("aluminio")){
+            tipoMetal= ALUMINIO;
+        }else if (tipo.toLowerCase().equals("acero")){
+            tipoMetal=ACERO;
+        }
+        return tipoMetal;
+    }
     @Override
     public String toString() {
-        String mensaje=super.toString();
-        mensaje+="\nMetal{" +
-                "tipoMetal=" + tipoMetal +
-                '}';
-        return mensaje;
+        return super.toString() + String.format(" (Metal: %s)", tipoMetal);
     }
 }

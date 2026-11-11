@@ -2,6 +2,7 @@ package clases;
 
 import clases.lotes.Lote;
 import enums.Estados;
+import interfaces.IGenerable;
 import record.Comprobante;
 
 import javax.swing.*;
@@ -74,7 +75,7 @@ public class Entrega {
     public void setListaLotes(List<Lote> listaLotes) {
         this.listaLotes = listaLotes;
     }
-    private void aceptar(){
+    public void aceptar(){
         if (!validarEstados()){
             JOptionPane.showMessageDialog(null, "No se puede aceptar una entrega que ya fue aceptada");
             return;
@@ -84,6 +85,8 @@ public class Entrega {
         }else if (!getListaLotes().isEmpty()){
             setEstadoEntrega(ACEPTADA);
             setComprobante(calcularTotal());
+            double valorAcumulado=getComprobante().valorTotal();
+            getAportante().setValorAcumulado(getAportante().getValorAcumulado()+valorAcumulado);
             JOptionPane.showMessageDialog(null, "Se acepto la entrega con exito"+"\n Cantidad de lotes: "+getListaLotes().size());
         }
     }
@@ -102,13 +105,16 @@ public class Entrega {
             JOptionPane.showMessageDialog(null, "No se puede aceptar un nuevo lote mientras la entrega este "+ getEstadoEntrega());
         }
     }
-    public String mostrarListaLotes(){
-        String mensaje="";
-        for (Lote lote:getListaLotes()){
-            mensaje+=lote.toString();
-            mensaje+="\n-------------------------";
+    public String mostrarListaLotes() {
+        if (getListaLotes().isEmpty()) {
+            return "No hay lotes registrados en esta entrega.";
         }
-        return mensaje;
+        StringBuilder msj = new StringBuilder();
+        for (Lote lote : getListaLotes()) {
+            msj.append("\n• ").append(lote.toString())
+                    .append("\n--------------------------------------------------\n");
+        }
+        return msj.toString();
     }
     public void removerLote(){
         if (!validarEstados()){
@@ -128,16 +134,24 @@ public class Entrega {
             total+=lote.valorTotalKilogramo();
         }
         Comprobante comprobante=new Comprobante(getId(),getAportante().getIdentificacion(), getPesoTotal(), total);
+        Empresa.listComprobantes.add(comprobante);
         return comprobante;
     }
-
+    public List<String> obtenerEtiquetas() {
+        List<String> etiquetas = new ArrayList<>();
+        for (Lote lote : getListaLotes()) {
+            if (lote instanceof IGenerable generable) {
+                etiquetas.add(generable.generarEtiqueta());
+            }
+        }
+        return etiquetas;
+    }
     @Override
     public String toString() {
-        return "\nEntrega{" +
-                "id='" + id + '\'' +
-                ", aportante =" + aportante.getIdentificacion() +
-                ", estadoEntrega=" + estadoEntrega +
-                ", pesoTotal=" + pesoTotal +
-                '}' + "\n";
+        return String.format("Entrega [%s] | Estado: %s | Aportante ID: %s | Peso Total: %d kg",
+                id,
+                estadoEntrega,
+                (aportante != null ? aportante.getIdentificacion() : "Sin asignar"),
+                pesoTotal);
     }
 }

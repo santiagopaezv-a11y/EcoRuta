@@ -50,11 +50,7 @@ public abstract class Lote {
     }
     @Override
     public String toString() {
-        return "\nLote{" +
-                "id='" + id + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", kilogramos=" + kilogramos +
-                ", valorKilogramo=" + valorKilogramo +
-                '}';
+        return String.format("  • [%s] %s | %d kg | Valor: $%.2f",
+                id, descripcion, kilogramos, valorTotalKilogramo());
     }
 }

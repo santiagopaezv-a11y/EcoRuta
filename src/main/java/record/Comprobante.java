@@ -20,11 +20,16 @@ public record Comprobante(String idEntrega, String idAportante, int pesoTotal, d
 
     @Override
     public String toString() {
-        return "\nComprobante{" +
-                "idEntrega='" + idEntrega + '\'' +
-                ", idAportante='" + idAportante + '\'' +
-                ", pesoTotal=" + pesoTotal +
-                ", valorTotal=" + valorTotal +
-                '}'+"\n";
+        return String.format(
+                "===========================================\n" +
+                        "            COMPROBANTE DE ENTREGA         \n" +
+                        "===========================================\n" +
+                        "  Código Entrega : %s\n" +
+                        "  ID Aportante   : %s\n" +
+                        "  Peso Total     : %d kg\n" +
+                        "  Valor Total    : $%.2f\n" +
+                        "===========================================",
+                idEntrega, idAportante, pesoTotal, valorTotal
+        );
     }
 }

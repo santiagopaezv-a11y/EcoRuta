@@ -28,16 +28,11 @@ public class ResiduosElectronicos extends Lote implements IGenerable {
     }
     @Override
     public String generarEtiqueta() {
-        String mensaje= getId()+" "+getCantidadEquipos();
-        return mensaje;
+        return String.format("[ETIQUETA R. ELECTRÓNICO] Código: %s | Equipos Completos: %d", getId(), getCantidadEquipos());
     }
 
     @Override
     public String toString() {
-        String mensaje= super.toString();
-        mensaje+="\n ResiduosElectronicos{" +
-                "cantidadEquipos=" + cantidadEquipos +
-                '}';
-        return mensaje;
+        return super.toString() + String.format(" Residuos electronicos(Equipos: %d)", getCantidadEquipos());
     }
 }

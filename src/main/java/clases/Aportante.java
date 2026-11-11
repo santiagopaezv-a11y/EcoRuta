@@ -4,6 +4,7 @@ public class Aportante {
     private String identificacion;
     private String nombre;
     private String correo;
+    private double valorAcumulado;
 
     public Aportante(String identificacion, String nombre, String correo) {
         this.identificacion = identificacion;
@@ -20,6 +21,14 @@ public class Aportante {
         return correo;
     }
 
+    public double getValorAcumulado() {
+        return valorAcumulado;
+    }
+
+    public void setValorAcumulado(double valorAcumulado) {
+        this.valorAcumulado = valorAcumulado;
+    }
+
     public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
@@ -34,10 +43,7 @@ public class Aportante {
 
     @Override
     public String toString() {
-        return "\nAportante{" +
-                "identificacion='" + identificacion + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", correo='" + correo + '\'' +
-                '}' + "\n";
+        return String.format("Aportante: %s (%s) | Correo: %s",
+                nombre, identificacion, correo);
     }
 }
