@@ -34,4 +34,13 @@ public class Aportante {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    @Override
+    public String toString() {
+        return "\nAportante{" +
+                "identificacion='" + identificacion + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                '}' + "\n";
+    }
 }
