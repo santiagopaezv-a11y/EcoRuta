@@ -1,9 +1,9 @@
 package clases;
 
 public class Aportante {
-    private final String identificacion;
-    private final String nombre;
-    private final String correo;
+    private String identificacion;
+    private String nombre;
+    private String correo;
 
     public Aportante(String identificacion, String nombre, String correo) {
         this.identificacion = identificacion;
@@ -18,5 +18,26 @@ public class Aportante {
     }
     public String getCorreo() {
         return correo;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    @Override
+    public String toString() {
+        return "Aportante{" +
+                "identificacion='" + identificacion + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                '}' + "\n";
     }
 }

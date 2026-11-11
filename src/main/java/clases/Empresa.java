@@ -251,9 +251,6 @@ public class Empresa {
         }
         JOptionPane.showMessageDialog(null, "No se encontro el id del aportante (La entrega no se creo). ");
     }
-
-
-
-    }
+}
 
 
