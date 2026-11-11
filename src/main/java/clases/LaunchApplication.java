@@ -13,6 +13,5 @@ public class LaunchApplication {
         var entrega=new Entrega(aportante);
         entrega.agregarLote(lote);
         entrega.agregarLote(lote2);
-        entrega.calcularTotal();
     }
 }
