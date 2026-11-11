@@ -130,4 +130,14 @@ public class Entrega {
         Comprobante comprobante=new Comprobante(getId(),getAportante().getIdentificacion(), getPesoTotal(), total);
         return comprobante;
     }
+
+    @Override
+    public String toString() {
+        return "\nEntrega{" +
+                "id='" + id + '\'' +
+                ", aportante =" + aportante.getIdentificacion() +
+                ", estadoEntrega=" + estadoEntrega +
+                ", pesoTotal=" + pesoTotal +
+                '}' + "\n";
+    }
 }

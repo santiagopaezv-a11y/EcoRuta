@@ -34,7 +34,7 @@ public class Aportante {
 
     @Override
     public String toString() {
-        return "Aportante{" +
+        return "\nAportante{" +
                 "identificacion='" + identificacion + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", correo='" + correo + '\'' +

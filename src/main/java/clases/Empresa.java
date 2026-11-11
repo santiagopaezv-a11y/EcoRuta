@@ -1,6 +1,8 @@
 package clases;
 
 import clases.lotes.Lote;
+import clases.lotes.Metal;
+import clases.lotes.ResiduosElectronicos;
 import record.Comprobante;
 
 import javax.swing.*;
@@ -205,7 +207,7 @@ public class Empresa {
 
     public void moduloEntrega(){
 
-        String menu = "Aportante:" +
+        String menu = "Entrega:" +
                 "\n ingrese la opcion (1,2,3...): " +
                 "\n1. Crear entrega. " +
                 "\n2. Ver entrega por id. " +
@@ -221,13 +223,13 @@ public class Empresa {
                 crearEntrega();
                 break;
             case "2":
-//                verEntregaPorId();
+                verEntregaPorId();
                 break;
             case "3":
-//                eliminarEntrega();
+                eliminarEntrega();
                 break;
             case "4":
-//                moduloLote();
+                moduloLote();
                 break;
             case "5":
                 cargar();
@@ -251,6 +253,106 @@ public class Empresa {
         }
         JOptionPane.showMessageDialog(null, "No se encontro el id del aportante (La entrega no se creo). ");
     }
+
+    public void verEntregaPorId(){
+
+        String idEntregaVer = JOptionPane.showInputDialog("Ingrese el id de la entrega que desea ver: ");
+
+        for (Entrega entrega : getListEntregas()) {
+            if(entrega.getId().trim().equals(idEntregaVer.trim())) {
+                String mensaje = "";
+                for (Lote lote : entrega.getListaLotes()) {
+                    mensaje += etiquetas(lote) + "\n--------------\n";
+            }
+                mensaje +=  entrega.getComprobante();
+                JOptionPane.showMessageDialog(null, mensaje);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No se encontro la entrega con el id " + idEntregaVer);
+    }
+
+    public void eliminarEntrega(){
+        String idEntregaEliminar = JOptionPane.showInputDialog("Ingrese el id de la entrega que desea eliminar. ");
+
+        for (Entrega entrega : getListEntregas()) {
+            if (entrega.getId().trim().equals(idEntregaEliminar.trim())) {
+                getListAportantes().remove(entrega);
+                JOptionPane.showMessageDialog(null, "Entrega eliminada exitosamente.");
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No se encontro la entrega con el id " + idEntregaEliminar);
+    }
+
+    public void moduloLote(){
+
+        Entrega entrega = consultarEntrega();
+        if (entrega == null)return;
+
+        String menu = "Lote:" +
+                "\n ingrese la opcion (1,2,3...): " +
+                "\n1. Crear lote. " +
+                "\n2. Ver lista de lotes. " +
+                "\n3. Eliminar lote. " +
+                "\n4. Volver al menu de EcoRuta";
+
+        menu = JOptionPane.showInputDialog(menu);
+
+        switch (menu) {
+
+            case "1":
+                crearLote();
+                break;
+            case "2":
+                verListaLotes();
+                break;
+            case "3":
+                eliminarLote();
+                break;
+            case "4":
+                cargar();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opcion no valida");
+                break;
+        }
+    }
+
+    public void crearLote(){
+        String descripcion = JOptionPane.showInputDialog("Ingrese la descripcion del lote. ");
+    }
+
+
+
+
+
+
+
+    public Entrega consultarEntrega(){
+        String idEntrega = JOptionPane.showInputDialog("Ingrese el id de la entrega.");
+        Entrega entrega1 = null;
+        for (Entrega entrega : getListEntregas()) {
+            if (entrega.getId().trim().equals(idEntrega.trim())) {
+                entrega1 = entrega;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No se encontro la entrega con el id " + idEntrega);
+    return entrega1;
+    }
+
+    public String etiquetas(Lote lote){
+
+        String mensaje = "";
+            if (lote instanceof Metal){
+                mensaje = ((Metal) lote).generarEtiqueta();
+        }
+            else if (lote instanceof ResiduosElectronicos){
+                mensaje = ((ResiduosElectronicos) lote).generarEtiqueta();
+            }
+            return mensaje;
+    }
 }
+
 
 
