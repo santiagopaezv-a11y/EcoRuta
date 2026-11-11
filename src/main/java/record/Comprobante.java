@@ -17,4 +17,14 @@ public record Comprobante(String idEntrega, String idAportante, int pesoTotal, d
     public double valorTotal() {
         return valorTotal;
     }
+
+    @Override
+    public String toString() {
+        return "\nComprobante{" +
+                "idEntrega='" + idEntrega + '\'' +
+                ", idAportante='" + idAportante + '\'' +
+                ", pesoTotal=" + pesoTotal +
+                ", valorTotal=" + valorTotal +
+                '}'+"\n";
+    }
 }
