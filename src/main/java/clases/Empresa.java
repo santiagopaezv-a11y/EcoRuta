@@ -221,13 +221,13 @@ public class Empresa {
                 crearEntrega();
                 break;
             case "2":
-                verEntregaPorId();
+//                verEntregaPorId();
                 break;
             case "3":
-                eliminarEntrega();
+//                eliminarEntrega();
                 break;
             case "4":
-                moduloLote();
+//                moduloLote();
                 break;
             case "5":
                 cargar();
