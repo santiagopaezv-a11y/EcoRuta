@@ -31,4 +31,13 @@ public class ResiduosElectronicos extends Lote implements IGenerable {
         String mensaje= getId()+" "+getCantidadEquipos();
         return mensaje;
     }
+
+    @Override
+    public String toString() {
+        String mensaje= super.toString();
+        mensaje+="\n ResiduosElectronicos{" +
+                "cantidadEquipos=" + cantidadEquipos +
+                '}';
+        return mensaje;
+    }
 }

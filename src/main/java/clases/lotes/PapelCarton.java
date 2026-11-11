@@ -26,4 +26,13 @@ public class PapelCarton extends Lote {
         }
         super.setValorKilogramo(valorKilogramo);
     }
+
+    @Override
+    public String toString() {
+        String mensaje=super.toString();
+        mensaje+="\n PapelCarton{" +
+                "clasificado=" + clasificado +
+                '}';
+        return mensaje;
+    }
 }
