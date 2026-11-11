@@ -36,4 +36,13 @@ public class Metal extends Lote implements IGenerable {
         String mensaje= getId()+" "+getTipoMetal();
         return mensaje;
     }
+
+    @Override
+    public String toString() {
+        String mensaje=super.toString();
+        mensaje+="\nMetal{" +
+                "tipoMetal=" + tipoMetal +
+                '}';
+        return mensaje;
+    }
 }

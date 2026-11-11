@@ -44,4 +44,17 @@ public abstract class Lote {
     protected void setValorKilogramo(double valorKilogramo) {
         this.valorKilogramo = valorKilogramo;
     }
+    public double valorTotalKilogramo(){
+        double total= getKilogramos()*getValorKilogramo();
+        return total;
+    }
+    @Override
+    public String toString() {
+        return "\nLote{" +
+                "id='" + id + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", kilogramos=" + kilogramos +
+                ", valorKilogramo=" + valorKilogramo +
+                '}';
+    }
 }
