@@ -154,4 +154,5 @@ public class Entrega {
                 (aportante != null ? aportante.getIdentificacion() : "Sin asignar"),
                 pesoTotal);
     }
+
 }
